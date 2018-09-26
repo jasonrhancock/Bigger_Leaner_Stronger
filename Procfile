@@ -1,1 +1,1 @@
-web: gunicorn bigger_leaner_stronger.wsgi --log-file -
+web: gunicorn mysite.wsgi --log-file -
