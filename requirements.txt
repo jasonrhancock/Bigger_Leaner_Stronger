@@ -2,3 +2,4 @@ Django==2.1.1
 pytz==2018.5
 gunicorn==19.7.1
 dj-database-url==0.4.2
+psycopg2==2.7.3.1
