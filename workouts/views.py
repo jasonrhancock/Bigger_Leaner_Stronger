@@ -6,9 +6,8 @@ from django.template import loader
 import datetime
 
 def index(request):
-    template = loader.get_template('workouts/workout_template.html')
-    context = {"some_text": "Hello, world. You're at the polls index."}
-    # return HttpResponse("Hello, world. You're at the polls index.")
+    template = loader.get_template('workout_template.html')
+    context = {"payload": "This text was generated from views.py and passed to workout_template.html"}
     return HttpResponse(template.render(context, request))
 
 def current_datetime(request):

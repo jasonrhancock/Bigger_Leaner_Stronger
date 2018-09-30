@@ -55,8 +55,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + "/Bigger_Leaner_Stronger/mysite/templates", BASE_DIR + "/Bigger_Leaner_Stronger/workouts/templates",
-                 "/media/defiant/enderall/Drive/Our Documents/Jason/Programming/Python/Django/Bigger Leaner Stronger/Bigger_Leaner_Stronger/workouts/templates"],
+        'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates'),
+                 os.path.join(BASE_DIR, 'workouts', 'templates', 'workouts')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,4 +117,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'site_media', 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'site_media', 'static')
