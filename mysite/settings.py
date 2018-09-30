@@ -55,7 +55,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + "/Bigger_Leaner_Stronger/mysite/templates", BASE_DIR + "/Bigger_Leaner_Stronger/workouts/templates",
+                 "/media/defiant/enderall/Drive/Our Documents/Jason/Programming/Python/Django/Bigger Leaner Stronger/Bigger_Leaner_Stronger/workouts/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
