@@ -5,7 +5,10 @@ from django.utils import timezone
 class Workout(models.Model):
     lifter = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     exercise = models.CharField(max_length=50)
-    reps = models.IntegerField()
+    weight = models.CharField(max_length=4)
+    reps_Set_1 = models.IntegerField(default=0)
+    reps_Set_2 = models.IntegerField(default=0)
+    reps_Set_3 = models.IntegerField(default=0)
     lifted_date = models.DateTimeField(
         blank=True, null=True)
     notes = models.TextField()
