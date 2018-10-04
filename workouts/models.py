@@ -22,7 +22,7 @@ class Workout(models.Model):
     #     self.save()
 
     def __str__(self):
-        return f'{selflifter} -- {self.exercise} -- {self.lifted_date}'
+        return f'{self.lifter} -- {self.exercise} -- {self.lifted_date}'
 
 
 class Exercise(models.Model):
