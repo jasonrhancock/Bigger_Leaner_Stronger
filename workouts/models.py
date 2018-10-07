@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator
 # Create your models here.
 class Workout(models.Model):
     lifter = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='workouts')
-    # TODO: Figure out why the exercise shows up as 'Exercise Object (1)'
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE)
     weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
     reps_Set_1 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
@@ -14,9 +13,7 @@ class Workout(models.Model):
     notes = models.TextField()
 
     def __str__(self):
-        return '{self.lifter} -- {self.exercise} -- {self.lifted_date}'.format(self.lifter,
-                                                                               self.exercise,
-                                                                               self.lifted_date)
+        return '{} -- {} -- {}'.format(self.lifter, self.exercise, self.lifted_date)
 
 
 class Exercise(models.Model):
@@ -25,3 +22,6 @@ class Exercise(models.Model):
     name = models.CharField(max_length=50)
     # eventually the muscle_group can be its own model as well to further refine
     muscle_group = models.CharField(max_length=90)
+
+    def __str__(self):
+        return self.name
