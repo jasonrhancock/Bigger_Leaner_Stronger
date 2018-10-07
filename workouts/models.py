@@ -1,28 +1,22 @@
 from django.db import models
-from django.utils import timezone
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class Workout(models.Model):
-    lifter = models.ForeignKey('auth.User', on_delete=models.CASCADE, 
-        related_name='workouts')
-    # exercise = models.CharField(max_length=50)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, 
-        related_name='workouts')
-    weight = models.CharField(max_length=4) ### PS: porque no los IntegerField???
-    reps_Set_1 = models.IntegerField(default=0)
-    reps_Set_2 = models.IntegerField(default=0)
-    reps_Set_3 = models.IntegerField(default=0)
-    lifted_date = models.DateTimeField(
-        blank=True, null=True, auto_now_add=True)
-    ### PS: consider using `auto_now_add=True` in that DateTimeField rather than using the publish function to set the date to now. 
+    lifter = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='workouts')
+    # TODO: Figure out why the exercise shows up as 'Exercise Object (1)'
+    exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE)
+    weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
+    reps_Set_1 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    reps_Set_2 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    reps_Set_3 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    lifted_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     notes = models.TextField()
 
-    # def publish(self):
-    #     self.lifted_date = timezone.now()
-    #     self.save()
-
     def __str__(self):
-        return f'{self.lifter} -- {self.exercise} -- {self.lifted_date}'
+        return '{self.lifter} -- {self.exercise} -- {self.lifted_date}'.format(self.lifter,
+                                                                               self.exercise,
+                                                                               self.lifted_date)
 
 
 class Exercise(models.Model):
