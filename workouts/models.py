@@ -1,16 +1,19 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django import forms
 
 # Create your models here.
 class Workout(models.Model):
     lifter = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='workouts')
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE)
-    weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
-    reps_Set_1 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
-    reps_Set_2 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
-    reps_Set_3 = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    set_1_Weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
+    set_1_Reps = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    set_2_Weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
+    set_2_Reps = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
+    set_3_Weight = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(1500)])
+    set_3_Reps = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(50)])
     lifted_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return '{} -- {} -- {}'.format(self.lifter, self.exercise, self.lifted_date)
